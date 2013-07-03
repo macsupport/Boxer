@@ -73,7 +73,7 @@ if (jQuery) (function($) {
 			type = $target.data("type") || "";
 		
 		var is_image    = ( (type == "image") || (extension == "jpeg" || extension == "jpg" || extension == "gif" || extension == "png" || source.substr(0, 10) == "data:image") ),
-			is_video    = ( source.indexOf("youtube.com/embed") > -1 || source.indexOf("player.vimeo.com/video") > -1 || source.indexOf("dailymotion.com/embed") > -1 || source.indexOf("mp4") > -1 || source.indexOf(".ogg") > -1  ),
+			is_video    = ( source.indexOf("youtube.com/embed") > -1 || source.indexOf("player.vimeo.com/video") > -1 || source.indexOf("dailymotion.com/embed") > -1 || source.indexOf("mp4") > -1 || source.indexOf(".ogg") > -1 ),
 			is_url 		= ( (type == "url") || (!is_image && !is_video && source.substr(0, 4) == "http") ),
 			is_element  = ( (type == "element") || (!is_image && !is_video && !is_url && source.substr(0, 1) == "#") ),
 			is_object   = ( (typeof $object !== "undefined") );
