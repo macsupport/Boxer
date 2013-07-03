@@ -73,7 +73,7 @@ if (jQuery) (function($) {
 			type = $target.data("type") || "";
 		
 		var is_image    = ( (type == "image") || (extension == "jpeg" || extension == "jpg" || extension == "gif" || extension == "png" || source.substr(0, 10) == "data:image") ),
-			is_video    = ( source.indexOf("youtube.com/embed") > -1 || source.indexOf("player.vimeo.com/video") > -1 ),
+			is_video    = ( source.indexOf("youtube.com/embed") > -1 || source.indexOf("player.vimeo.com/video") > -1 || source.indexOf("dailymotion.com/embed") > -1 || source.indexOf("mp4") > -1 || source.indexOf(".ogg") > -1  ),
 			is_url 		= ( (type == "url") || (!is_image && !is_video && source.substr(0, 4) == "http") ),
 			is_element  = ( (type == "element") || (!is_image && !is_video && !is_url && source.substr(0, 1) == "#") ),
 			is_object   = ( (typeof $object !== "undefined") );
@@ -96,11 +96,11 @@ if (jQuery) (function($) {
 			
 			if (is_image || is_video) {
 				// Check for gallery
-				var rel = data.$target.attr("rel");
+				var rel = data.$target.attr("data-rel");
 				if (typeof rel !== "undefined" && rel !== false) {
 					data.gallery.active = true;
 					data.gallery.rel = rel;
-					data.gallery.$items = $("a[rel= " + data.gallery.rel + "]");
+					data.gallery.$items = $("a[data-rel= " + data.gallery.rel + "]");
 					data.gallery.index = data.gallery.$items.index(data.$target);
 					data.gallery.total = data.gallery.$items.length - 1;
 				}
@@ -436,7 +436,7 @@ if (jQuery) (function($) {
 				data.$position.find(".current").html(data.gallery.index + 1);
 				
 				var source = data.$target.attr("href"),
-					is_video = ( source.indexOf("youtube.com/embed") > -1 || source.indexOf("player.vimeo.com/video") > -1 );
+					is_video = ( source.indexOf("youtube.com/embed") > -1  || source.indexOf("player.vimeo.com/video") > -1 || source.indexOf("dailymotion.com/embed") > -1 || source.indexOf(".mp4") > -1  || source.indexOf(".ogg") > -1 );
 				
 				if (is_video) {
 					_loadVideo(source);
